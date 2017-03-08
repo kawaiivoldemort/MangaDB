@@ -30,6 +30,10 @@
     <Content Remove="wwwroot/images\AdPanel\20 - RImAUXl.jpg" />
     <Content Remove="wwwroot/images\AdPanel\22 - uYUvj5E.jpg" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\images\AdPanel\file.md" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
@@ -40,9 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="wwwroot\images\AdPanel\" />
   </ItemGroup>
 
 </Project>
