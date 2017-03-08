@@ -1,3 +1,0 @@
-# MangaDB
-
-Hello World!!
