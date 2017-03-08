@@ -11,7 +11,7 @@
 *.userprefs
 
 # User-specific folders
-AdPanel/
+MangaDB\wwwroot\images\AdPanel
 
 # Build results
 [Dd]ebug/
