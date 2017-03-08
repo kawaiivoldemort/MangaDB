@@ -8,28 +8,29 @@ namespace MangaDB.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        // HomePage Controller
+        // Should return the front page
+        public IActionResult Homepage()
         {
             return View();
         }
-
-        public IActionResult About()
+    }
+    public class MangaListController : Controller
+    {
+        // List of Manga Controller
+        // Should return a page catalouging manga
+        public string MangaListPage()
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
+            return "Manga Page";
         }
-
-        public IActionResult Contact()
+    }
+    public class CommentsController : Controller
+    {
+        // List of Comments Controller
+        // Should return a list of comments in XML a la disqus
+        public string ListComments(string mangaName)
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View();
+            return "Comments of " + mangaName;
         }
     }
 }

@@ -53,7 +53,13 @@ namespace MangaDB
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Homepage}");
+                routes.MapRoute(
+                    name: "mangaList",
+                    template: "{controller=MangaList}/{action=MangaListPage}");
+                routes.MapRoute(
+                    name: "comments",
+                    template: "{controller=Comments}/{action=ListComments}/{id?}");
             });
         }
     }
