@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  mangadb:
+    image: mangadb
+    build:
+      context: ./MangaDB
+      dockerfile: Dockerfile
