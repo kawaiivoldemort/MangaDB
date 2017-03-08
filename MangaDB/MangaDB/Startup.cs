@@ -12,6 +12,8 @@ namespace MangaDB
 {
     public class Startup
     {
+        public static string envPath;
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -20,6 +22,7 @@ namespace MangaDB
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+            envPath = env.WebRootPath;
         }
 
         public IConfigurationRoot Configuration { get; }
