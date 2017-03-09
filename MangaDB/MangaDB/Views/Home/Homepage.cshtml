@@ -4,55 +4,92 @@
 @using System.IO
 @using System.Linq;
 @{
+    string title = "MangaDB";
+    string caption = "the lightning golden holy crossbow of manga databases";
     string webrootPath = Startup.envPath;
-    string carouselImagePath = "/images/AdPanel";
-    string[] titleImages = (
-        from filePath
-        in Directory.GetFiles(Startup.envPath + carouselImagePath, "*.jpg")
-        select System.IO.Path.GetFileNameWithoutExtension(filePath)
-    ).ToArray();
+    string adImagePath = "/images/AdPanel";
+    string[] adImages = AccessoryFunctions.GetImages(adImagePath);
+    string newImagePath = "/images/NewPanel";
+    string[] newImages = AccessoryFunctions.GetImages(newImagePath);
+    string trendingImagePath = "/images/TrendingPanel";
+    string[] trendingImages = AccessoryFunctions.GetImages(trendingImagePath);
+    string allTimeFavoritesImagePath = "/images/AllTimeFavoritesPanel";
+    string[] allTimeFavoritesImages = AccessoryFunctions.GetImages(allTimeFavoritesImagePath);
+    NewsArticle[] news = AccessoryFunctions.GetNews();
 }
 <!DOCTYPE html>
 <html>
     <head>
         <title>
-            Welcome to Manga DB, your One Stop Shop for all Manga
+            @caption
         </title>
-        <style>
-           #mangaAdCarousel {
-               width: 100%;
-               height: 300px;
-           }
-        </style>
-        <script>
-
-        </script>
+        <link rel="stylesheet" type="text/css" href="~/css/homepage.css"/>
+        <link rel="stylesheet" type="text/css" href="~/css/slick.css" />
+        <link rel="stylesheet" type="text/css" href="~/css/slick-theme.css" />
+        <script src="~/js/jquery-3.1.1.min.js"></script>
+        <script src="~/js/slick.min.js"></script>
+        <script src="~/js/main.js"></script>
     </head>
     <body>
-        <div id="mangaAdCarousel" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner" role="listbox">
-                @if (titleImages.Length > 0)
-                {
-                    <div class="item active" style="position: absolute; left: 0; right: 0;">
-                        <img src="@(carouselImagePath + "/" + titleImages[0] + ".jpg")" alt="@titleImages[0]">
-                    </div>
-                    @for (var i = 1; i < titleImages.Length; i++)
+        <p id="title">@title</p>
+        <p id="caption">
+            <i>@("Welcome to " + caption)</i>
+        </p>
+        <p class="contentType">FEATURED</p>
+        <div id="adSlider">
+            @foreach (var adImage in adImages)
+            {
+                <div class="ad">
+                    <img src="@(adImagePath + "/" + adImage + ".jpg")" alt="@adImage">
+                </div>
+            }
+        </div>
+        <p class="contentType">NEW</p>
+        <div id="newSlider">
+            @foreach (var newImage in newImages)
+            {
+                <div class="new">
+                    <img src="@(newImagePath + "/" + newImage + ".jpg")" alt="@newImage">
+                </div>
+            }
+        </div>
+        <div id="sideBySideContainer">
+            <div id="trendingContainer">
+                <p class="contentType">TRENDING</p>
+                <div id="trendingSlider">
+                    @foreach (var trendingImage in trendingImages)
                     {
-                        <div class="item">
-                            <img src="@(carouselImagePath + "/" + titleImages[i] + ".jpg")" alt="@titleImages[i]">
+                        <div class="trending">
+                            <img src="@(trendingImagePath + "/" + trendingImage + ".jpg")" alt="@trendingImage">
                         </div>
                     }
-                }
+                </div>
             </div>
-            <a class="left carousel-control" href="#mangaAdCarousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#mangaAdCarousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+            <div id="allTimeFavoritesContainer">
+                <p class="contentType">ALL TIME FAVORITES</p>
+                <div id="allTimeFavoritesSlider">
+                    @foreach (var allTimeFavoritesImage in allTimeFavoritesImages)
+                    {
+                        <div class="allTimeFavorites">
+                            <img src="@(allTimeFavoritesImagePath + "/" + allTimeFavoritesImage + ".jpg")" alt="@allTimeFavoritesImage">
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
-        <h1>Manga DB</h1>
+        <p class="contentType">NEWS</p>
+        <div id="newsSlider">
+            @foreach (var newsArticle in news)
+            {
+                <div class="article">
+                    <p class="newsTitle">
+                        @newsArticle.title
+                    </p>
+                    <p class="newsContent">
+                        @newsArticle.content
+                    </p>
+                </div>
+            }
+        </div>
     </body>
 </html>
