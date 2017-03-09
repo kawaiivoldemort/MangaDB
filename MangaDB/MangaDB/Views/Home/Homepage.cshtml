@@ -19,8 +19,9 @@
             Welcome to Manga DB, your One Stop Shop for all Manga
         </title>
         <style>
-           #mangaAdCarousel.carousel.item {
+           #mangaAdCarousel {
                width: 100%;
+               height: 300px;
            }
         </style>
         <script>
@@ -32,7 +33,7 @@
             <div class="carousel-inner" role="listbox">
                 @if (titleImages.Length > 0)
                 {
-                    <div class="item active">
+                    <div class="item active" style="position: absolute; left: 0; right: 0;">
                         <img src="@(carouselImagePath + "/" + titleImages[0] + ".jpg")" alt="@titleImages[0]">
                     </div>
                     @for (var i = 1; i < titleImages.Length; i++)
