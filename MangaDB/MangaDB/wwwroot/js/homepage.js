@@ -1,7 +1,7 @@
 ﻿var $jq = jQuery.noConflict();
 
 $jq(document).ready(function () {
-    $jq('#adSlider').slick({
+    $jq('#advertSlider').slick({
         dots: true,
         infinite: true,
         speed: 300,

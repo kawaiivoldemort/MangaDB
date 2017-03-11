@@ -8,28 +8,6 @@
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Views\NewFolder\**" />
-    <Content Remove="Views\NewFolder\**" />
-    <EmbeddedResource Remove="Views\NewFolder\**" />
-    <None Remove="Views\NewFolder\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="wwwroot/images\AdPanel\01 - wwSFUzb.jpg" />
-    <Content Remove="wwwroot/images\AdPanel\02 - j9CR6wP.jpg" />
-    <Content Remove="wwwroot/images\AdPanel\07 - Viy4uvJ.jpg" />
-    <Content Remove="wwwroot/images\AdPanel\08 - bgCi6uw.jpg" />
-    <Content Remove="wwwroot/images\AdPanel\09 - SQwkuNl.jpg" />
-    <Content Remove="wwwroot/images\AdPanel\10 - hFSwDHB.jpg" />
-    <Content Remove="wwwroot/images\AdPanel\11 - wfuI8dG.jpg" />
-    <Content Remove="wwwroot/images\AdPanel\13 - C92kMFc.jpg" />
-    <Content Remove="wwwroot/images\AdPanel\18 - JRvWRFS.jpg" />
-    <Content Remove="wwwroot/images\AdPanel\19 - pJ9A9z9.jpg" />
-    <Content Remove="wwwroot/images\AdPanel\20 - RImAUXl.jpg" />
-    <Content Remove="wwwroot/images\AdPanel\22 - uYUvj5E.jpg" />
-  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
