@@ -56,13 +56,20 @@ namespace MangaDB
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Homepage}");
+                    template: "{controller=Home}",
+                    defaults: new { action = "Homepage" });
                 routes.MapRoute(
                     name: "mangaList",
-                    template: "{controller=MangaList}/{action=MangaListPage}");
+                    template: "{controller=MangaList}",
+                    defaults: new { action = "MangaListPage" });
+                routes.MapRoute(
+                    name: "getComments",
+                    template: "{controller=GetComments}/{mangaName}/{lastUpdated:int}",
+                    defaults: new { action = "GetCommentsAsync" });
                 routes.MapRoute(
                     name: "comments",
-                    template: "{controller=Comments}/{action=ListComments}/{id?}");
+                    template: "{controller=Comments}/{mangaName}",
+                    defaults: new { action = "Comments" });
             });
         }
     }

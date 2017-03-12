@@ -24,13 +24,4 @@ namespace MangaDB.Controllers
             return "Manga Page";
         }
     }
-    public class CommentsController : Controller
-    {
-        // List of Comments Controller
-        // Should return a list of comments in XML a la disqus
-        public string ListComments(string mangaName)
-        {
-            return "Comments of " + mangaName;
-        }
-    }
 }
