@@ -44,6 +44,14 @@ namespace MangaDB.Controllers
                 content = "I AM NOT!!",
                 date = DateTime.Now
             });
+            replies.Add(new Reply
+            {
+                username = "Naveen Patel",
+                uImgSrc = "/images/AdPanel/f928b292.jpg",
+                usernameTo = "Nikhil Prabhu",
+                content = "Of course you are",
+                date = DateTime.Now
+            });
             var data = new List<Comment>();
             data.Add(new Comment
             {

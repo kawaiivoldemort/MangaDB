@@ -15,61 +15,76 @@
             class GetComments {
                 constructor() {
                     this.lastUpdated = 0;
+                    this.userIconTemplate = document.createElement('img');
+                    this.replyUserIconTemplate = document.createElement('img');
+                    this.userNameTemplate = document.createElement('p');
+                    this.dateTemplate = document.createElement('p');
+                    this.textTemplate = document.createElement('div');
+                    this.contentTemplate = document.createElement('p');
+                    this.replyButtonTemplate = document.createElement('p');
+                    this.repliesTemplate = document.createElement('div');
+                    this.commentTemplate = document.createElement('div');
+                    this.seperator = document.createElement('p');
+                    this.userToNameTemplate = document.createElement('p');
+                    $(this.userIconTemplate).addClass('userIcon');
+                    $(this.replyUserIconTemplate).addClass('replyUserIcon');
+                    $(this.userNameTemplate).addClass('username');
+                    $(this.dateTemplate).addClass('date');
+                    $(this.textTemplate).addClass('user');
+                    $(this.contentTemplate).addClass('content');
+                    $(this.replyButtonTemplate).addClass('replyButton');
+                    $(this.repliesTemplate).addClass('replies');
+                    $(this.commentTemplate).addClass('comment');
+                    $(this.userToNameTemplate).addClass('usernameTo');
+                    $(this.seperator).addClass('seperator');
+                    $(this.replyButtonTemplate).html('&#8618; reply');
+                    $(this.seperator).html("&#9679;");
                 }
                 refresh() {
                     $.get(
                         "/GetComments/@mangaName/" + this.lastUpdated,
-                        this.process,
+                        this.process.bind(this),
                         "json"
                     );
                 }
-                process(data) {
-                    for (var commentId in data) {
-                        var comment = data[commentId];
-                        //var date = comment["date"];
-                        var replies = comment["replies"];
-                        console.log(replies);
-                        var commentDisplay = document.createElement('div');
-                        $(commentDisplay).addClass('comment');
-                        var userDisplay = document.createElement('div');
-                        $(userDisplay).addClass('user');
-                        var usernameDisplay = document.createElement('p');
-                        $(usernameDisplay).addClass('username');
-                        usernameDisplay.innerHTML = comment['username'];
-                        var userIconDisplay = document.createElement('img');
-                        $(userIconDisplay).addClass('userIcon');
-                        userIconDisplay.src = comment['uImgSrc'];
-                        $(userDisplay).append(userIconDisplay, usernameDisplay);
-                        var contentDisplay = document.createElement('p');
-                        $(contentDisplay).addClass('content');
-                        contentDisplay.innerHTML = comment['content'];
-                        $(commentDisplay).append(userDisplay, contentDisplay);
-                        var repliesDisplay = document.createElement('div');
-                        $(repliesDisplay).addClass('replies');
-                        $(commentDisplay).append(userDisplay, contentDisplay, repliesDisplay);
-                        for(var repliesIdx in replies) {
-                            var reply = replies[repliesIdx];
-                            var replyDisplay = document.createElement('div');
-                            $(replyDisplay).addClass('user');
-                            var replyUserDisplay = document.createElement('div');
-                            var replyUserIconDisplay = document.createElement('img');
-                            $(replyUserIconDisplay).addClass('userIcon');
-                            replyUserIconDisplay.src = reply['uImgSrc'];
-                            var replyUsernameDisplay = document.createElement('p');
-                            $(replyUsernameDisplay).addClass('username');
-                            replyUsernameDisplay.innerHTML = reply['username'];
-                            var replyUserToNameDisplay = document.createElement('p');
-                            $(replyUserToNameDisplay).addClass('usernameTo');
-                            replyUserToNameDisplay.innerHTML = "&#8618; " + reply['usernameTo'];
-                            $(replyUserDisplay).append(replyUserIconDisplay, replyUsernameDisplay, replyUserToNameDisplay);
-                            var replyContentDisplay = document.createElement('p');
-                            $(replyContentDisplay).addClass('content');
-                            replyContentDisplay.innerHTML = reply['content'];
-                            var replyDate = replies[repliesIdx]["date"];
-                            $(replyDisplay).append(replyUserDisplay, replyContentDisplay);
-                            $(repliesDisplay).append(replyDisplay);
+                process(commentsData) {
+                    for (var commentId in commentsData) {
+                        var commentData = commentsData[commentId];
+                        var userIcon = $(this.userIconTemplate).clone();
+                        var userName = $(this.userNameTemplate).clone();
+                        var date = $(this.dateTemplate).clone();
+                        var text = $(this.textTemplate).clone();
+                        var content = $(this.contentTemplate).clone();
+                        var replyButton = $(this.replyButtonTemplate).clone();
+                        var replies = $(this.repliesTemplate).clone();
+                        var comment = $(this.commentTemplate).clone();
+                        $(userName).html(commentData['username']);
+                        $(userIcon).attr("src", commentData['uImgSrc']);
+                        $(date).html(commentData["date"]);
+                        $(content).html(commentData['content']);
+                        var repliesData = commentData['replies'];
+                        for (var repliesIdx in repliesData) {
+                            var replyData = repliesData[repliesIdx];
+                            var replyUserIcon = $(this.replyUserIconTemplate).clone();
+                            var replyUserName = $(this.userNameTemplate).clone();
+                            var replyUserToName = $(this.userToNameTemplate).clone();
+                            var replyDate = $(this.dateTemplate).clone();
+                            var replyText = $(this.textTemplate).clone();
+                            var replyContent = $(this.contentTemplate).clone();
+                            var replyReplyButton = $(this.replyButtonTemplate).clone();
+                            var reply = $(this.commentTemplate).clone();
+                            $(replyUserIcon).attr("src", replyData['uImgSrc']);
+                            $(replyUserName).html(replyData['username']);
+                            $(replyUserToName).html("&#10551; " + replyData['usernameTo']);
+                            $(replyDate).html(replyData["date"]);
+                            $(replyContent).html(replyData['content']);
+                            $(replyText).append(replyUserName, $(this.seperator).clone(), replyUserToName, $(this.seperator).clone(), replyDate, replyContent, replyReplyButton);
+                            $(reply).append(replyUserIcon, replyText);
+                            $(replies).append(reply);
                         }
-                        $('#comments').append(commentDisplay);
+                        $(text).append(userName, $(this.seperator).clone(), date, content, replyButton, replies);
+                        $(comment).append(userIcon, text);
+                        $('#comments').append(comment);
                     }
                 }
             }

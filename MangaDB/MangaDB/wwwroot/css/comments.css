@@ -1,35 +1,75 @@
 .comment {
-    border-bottom: 2px solid black;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: -1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
 }
 
 .userIcon {
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
+    width: 50px;
+    height: 50px;
     display: inline-block;
-    margin: 10px;
+    border-radius: 25px;
+    margin-right: 10px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    vertical-align: top;
 }
 
-.replies {
-    border-left: 1px solid black;
-    margin-left: 50px;
+.replyButton {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: transparent;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: grey;
 }
 
-.user {}
+.replyUserIcon {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 25px;
+    margin-right: 10px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    vertical-align: top;
+}
+
+.seperator {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
 .username {
     display: inline-block;
-    font-size: 0.8em;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: dodgerblue;
 }
 
 .usernameTo {
-    font-size: 0.8em;
-    color: blue;
+    font-weight: bold;
+    font-size: 0.9em;
     display: inline-block;
-    margin-left: 10px;
+    color: grey;
 }
 
 .content {
-    margin-left: 50px;
     font-size: 1.2em;
+}
+
+.date {
+    display: inline-block;
+    font-weight: bold;
+    color: grey;
+}
+
+.user {
+    display: inline-block;
 }
