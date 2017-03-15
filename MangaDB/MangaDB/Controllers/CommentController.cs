@@ -35,12 +35,11 @@ namespace MangaDB.Controllers
         }
         public JsonResult GetComments(string mangaName, int lastUpdated)
         {
-            Console.WriteLine("{0}:{1}", mangaName, lastUpdated);
             var replies = new List<Reply>();
             replies.Add(new Reply
             {
                 username = "Nikhil Prabhu",
-                uImgSrc = null,
+                uImgSrc = "/images/AdPanel/f928b292.jpg",
                 usernameTo = "Pradeep",
                 content = "I AM NOT!!",
                 date = DateTime.Now
@@ -49,10 +48,18 @@ namespace MangaDB.Controllers
             data.Add(new Comment
             {
                 username = "Pradeep",
-                uImgSrc = null,
+                uImgSrc = "/images/AdPanel/f928b292.jpg",
                 content = "Nikhil Prabhu is an old man",
                 date = DateTime.Now,
                 replies = replies
+            });
+            data.Add(new Comment
+            {
+                username = "Pradyumna",
+                uImgSrc = "/images/AdPanel/f928b292.jpg",
+                content = "This article is stupid",
+                date = DateTime.Now,
+                replies = new List<Reply>()
             });
             return Json(data);
         }

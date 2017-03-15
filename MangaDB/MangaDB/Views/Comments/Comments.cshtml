@@ -9,9 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <style>
-
-        </style>
+        <link rel="stylesheet" type="text/css" href="~/css/comments.css" />
         <script src="~/js/jquery-3.1.1.min.js"></script>
         <script>
             class GetComments {
@@ -28,11 +26,50 @@
                 process(data) {
                     for (var commentId in data) {
                         var comment = data[commentId];
-                        var username = comment["username"];
-                        var uImgSrc = comment["uImgSrc"];
-                        var content = comment["content"];
-                        var date = comment["date"];
+                        //var date = comment["date"];
                         var replies = comment["replies"];
+                        console.log(replies);
+                        var commentDisplay = document.createElement('div');
+                        $(commentDisplay).addClass('comment');
+                        var userDisplay = document.createElement('div');
+                        $(userDisplay).addClass('user');
+                        var usernameDisplay = document.createElement('p');
+                        $(usernameDisplay).addClass('username');
+                        usernameDisplay.innerHTML = comment['username'];
+                        var userIconDisplay = document.createElement('img');
+                        $(userIconDisplay).addClass('userIcon');
+                        userIconDisplay.src = comment['uImgSrc'];
+                        $(userDisplay).append(userIconDisplay, usernameDisplay);
+                        var contentDisplay = document.createElement('p');
+                        $(contentDisplay).addClass('content');
+                        contentDisplay.innerHTML = comment['content'];
+                        $(commentDisplay).append(userDisplay, contentDisplay);
+                        var repliesDisplay = document.createElement('div');
+                        $(repliesDisplay).addClass('replies');
+                        $(commentDisplay).append(userDisplay, contentDisplay, repliesDisplay);
+                        for(var repliesIdx in replies) {
+                            var reply = replies[repliesIdx];
+                            var replyDisplay = document.createElement('div');
+                            $(replyDisplay).addClass('user');
+                            var replyUserDisplay = document.createElement('div');
+                            var replyUserIconDisplay = document.createElement('img');
+                            $(replyUserIconDisplay).addClass('userIcon');
+                            replyUserIconDisplay.src = reply['uImgSrc'];
+                            var replyUsernameDisplay = document.createElement('p');
+                            $(replyUsernameDisplay).addClass('username');
+                            replyUsernameDisplay.innerHTML = reply['username'];
+                            var replyUserToNameDisplay = document.createElement('p');
+                            $(replyUserToNameDisplay).addClass('usernameTo');
+                            replyUserToNameDisplay.innerHTML = "&#8618; " + reply['usernameTo'];
+                            $(replyUserDisplay).append(replyUserIconDisplay, replyUsernameDisplay, replyUserToNameDisplay);
+                            var replyContentDisplay = document.createElement('p');
+                            $(replyContentDisplay).addClass('content');
+                            replyContentDisplay.innerHTML = reply['content'];
+                            var replyDate = replies[repliesIdx]["date"];
+                            $(replyDisplay).append(replyUserDisplay, replyContentDisplay);
+                            $(repliesDisplay).append(replyDisplay);
+                        }
+                        $('#comments').append(commentDisplay);
                     }
                 }
             }
@@ -40,6 +77,7 @@
         </script>
     </head>
     <body onload="obj.refresh()">
-
+        <div id="comments">
+        </div>
     </body>
 </html>
