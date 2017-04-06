@@ -5,6 +5,7 @@
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
+    width: 100%;
 }
 
 .userIcon {
@@ -40,6 +41,10 @@
     vertical-align: top;
 }
 
+.replies {
+    width: inherit;
+}
+
 .seperator {
     display: inline-block;
     margin-left: 10px;
@@ -72,4 +77,26 @@
 
 .user {
     display: inline-block;
+    width: 90%;
+}
+
+.replyInput {
+    display: block;
+    border-left: none;
+    border-right: none;
+    border-top: 0.5px solid lightgrey;
+    border-bottom: 0.5px solid lightgrey;
+    width: 60%;
+    height: 50px;
+    max-width: inherit;
+    padding: 5px;
+}
+
+.replyInput:focus {
+    outline: none;
+    background-color: whitesmoke;
+}
+
+.replyInputDiv {
+    display: block;
 }

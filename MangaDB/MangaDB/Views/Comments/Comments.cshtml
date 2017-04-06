@@ -21,8 +21,12 @@
                     this.dateTemplate = document.createElement('p');
                     this.textTemplate = document.createElement('div');
                     this.contentTemplate = document.createElement('p');
-                    this.replyButtonTemplate = document.createElement('p');
+                    this.replyButtonTemplate = document.createElement('button');
                     this.repliesTemplate = document.createElement('div');
+                    this.replyInputTemplate = document.createElement('div');
+                    this.replyInputAreaTemplate = document.createElement('textArea');
+                    this.replySendButton = document.createElement('button');
+                    this.replyCancelButton = document.createElement('button');
                     this.commentTemplate = document.createElement('div');
                     this.seperator = document.createElement('p');
                     this.userToNameTemplate = document.createElement('p');
@@ -33,11 +37,17 @@
                     $(this.textTemplate).addClass('user');
                     $(this.contentTemplate).addClass('content');
                     $(this.replyButtonTemplate).addClass('replyButton');
+                    $(this.replySendButton).addClass('replyButton');
+                    $(this.replyCancelButton).addClass('replyButton');
                     $(this.repliesTemplate).addClass('replies');
+                    $(this.replyInputTemplate).addClass('replyInputDiv');
+                    $(this.replyInputAreaTemplate).addClass('replyInput');
                     $(this.commentTemplate).addClass('comment');
                     $(this.userToNameTemplate).addClass('usernameTo');
                     $(this.seperator).addClass('seperator');
                     $(this.replyButtonTemplate).html('&#8618; reply');
+                    $(this.replySendButton).html("send");
+                    $(this.replyCancelButton).html("cancel");
                     $(this.seperator).html("&#9679;");
                 }
                 refresh() {
@@ -58,10 +68,10 @@
                         var replyButton = $(this.replyButtonTemplate).clone();
                         var replies = $(this.repliesTemplate).clone();
                         var comment = $(this.commentTemplate).clone();
-                        $(userName).html(commentData['username']);
-                        $(userIcon).attr("src", commentData['uImgSrc']);
-                        $(date).html(commentData["date"]);
-                        $(content).html(commentData['content']);
+                        userName.html(commentData['username']);
+                        userIcon.attr("src", commentData['uImgSrc']);
+                        date.html(commentData["date"]);
+                        content.html(commentData['content']);
                         var repliesData = commentData['replies'];
                         for (var repliesIdx in repliesData) {
                             var replyData = repliesData[repliesIdx];
@@ -73,19 +83,37 @@
                             var replyContent = $(this.contentTemplate).clone();
                             var replyReplyButton = $(this.replyButtonTemplate).clone();
                             var reply = $(this.commentTemplate).clone();
-                            $(replyUserIcon).attr("src", replyData['uImgSrc']);
-                            $(replyUserName).html(replyData['username']);
-                            $(replyUserToName).html("&#10551; " + replyData['usernameTo']);
-                            $(replyDate).html(replyData["date"]);
-                            $(replyContent).html(replyData['content']);
-                            $(replyText).append(replyUserName, $(this.seperator).clone(), replyUserToName, $(this.seperator).clone(), replyDate, replyContent, replyReplyButton);
-                            $(reply).append(replyUserIcon, replyText);
-                            $(replies).append(reply);
+                            replyUserIcon.attr("src", replyData['uImgSrc']);
+                            replyUserName.html(replyData['username']);
+                            replyUserToName.html("&#10551; " + replyData['usernameTo']);
+                            replyDate.html(replyData["date"]);
+                            replyContent.html(replyData['content']);
+                            replyText.append(replyUserName, $(this.seperator).clone(), replyUserToName, $(this.seperator).clone(), replyDate, replyContent, replyReplyButton);
+                            reply.append(replyUserIcon, replyText);
+                            replies.append(reply);
+                            replyReplyButton.click(this.addReply.bind(this, replyReplyButton));
                         }
-                        $(text).append(userName, $(this.seperator).clone(), date, content, replyButton, replies);
-                        $(comment).append(userIcon, text);
+                        text.append(userName, $(this.seperator).clone(), date, content, replyButton, replies);
+                        comment.append(userIcon, text);
                         $('#comments').append(comment);
+                        replyButton.click(this.addReply.bind(this, replyButton));
                     }
+                }
+                addReply(replyButton) {
+                    var replyBox = $(this.replyInputTemplate).clone();
+                    var replyInput = $(this.replyInputAreaTemplate).clone();
+                    var sendButton = $(this.replySendButton).clone();
+                    var cancelButton = $(this.replyCancelButton).clone();
+                    cancelButton.click(function(replyBox, replyButton) {
+                        replyBox.replaceWith(replyButton);
+                        replyButton.click(this.addReply.bind(this, replyButton));
+                    }.bind(this, replyBox, replyButton));
+                    sendButton.click(function(replyBox, replyButton) {
+                        replyBox.replaceWith(replyButton);
+                        replyButton.click(this.addReply.bind(this, replyButton));
+                    }.bind(this, replyBox, replyButton));
+                    $(replyBox).append(replyInput, sendButton, $(this.seperator).clone(), cancelButton);
+                    replyButton.replaceWith(replyBox);
                 }
             }
             var obj = new GetComments();
