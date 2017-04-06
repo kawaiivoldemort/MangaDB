@@ -1,6 +1,6 @@
 ﻿var $jq = jQuery.noConflict();
 
-$jq(document).ready(function () {
+$jq(document).ready(function() {
     $jq('#advertSlider').slick({
         dots: true,
         infinite: true,
