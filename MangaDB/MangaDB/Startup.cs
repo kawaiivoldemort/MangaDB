@@ -64,12 +64,16 @@ namespace MangaDB
                     defaults: new { action = "MangaListPage" });
                 routes.MapRoute(
                     name: "mangaSummary",
-                    template: "{controller=Manga}/{mangaName}/{summary}",
+                    template: "{controller=Manga}/{mangaName}/summary",
                     defaults: new { action = "GetMangaSummary" });
                 routes.MapRoute(
                     name: "mangaMetaData",
-                    template: "{controller=Manga}/{mangaName}/{metadata}",
+                    template: "{controller=Manga}/{mangaName}/metadata",
                     defaults: new { action = "GetMangaMetadata" });
+                routes.MapRoute(
+                    name: "mangaChapters",
+                    template: "{controller=Manga}/{mangaName}/chapters",
+                    defaults: new { action = "GetMangaChapters" });
                 routes.MapRoute(
                     name: "manga",
                     template: "{controller=Manga}/{mangaName}",

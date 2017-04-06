@@ -40,5 +40,28 @@ namespace MangaDB.Controllers
             };
             return Json(metadata);
         }
+        public JsonResult GetMangaChapters(string mangaName)
+        {
+            var chapters = new List<MangaChapter>();
+            foreach(var v in Enumerable.Range(0, 686))
+            {
+                chapters.Add(new MangaChapter
+                {
+                    chapterNumber = v
+                });
+            }
+            var volumes = new List<MangaVolume>();
+            volumes.Add(new MangaVolume
+            {
+                volumeNumber = 1,
+                chapters = chapters
+            });
+            var mangaChapters = new MangaChapters
+            {
+                name = "Bleach",
+                volumes = volumes
+            };
+            return Json(mangaChapters);
+        }
     }
 }

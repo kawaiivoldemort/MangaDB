@@ -22,4 +22,18 @@ namespace MangaMetadata
         public string name { get; set; }
         public string summary { get; set; }
     }
+    public class MangaChapters
+    {
+        public string name { get; set; }
+        public List<MangaVolume> volumes { get; set; }
+    }
+    public class MangaVolume
+    {
+        public int volumeNumber { get; set; }
+        public List<MangaChapter> chapters { get; set; }
+    }
+    public class MangaChapter
+    {
+        public int chapterNumber { get; set; }
+    }
 }
