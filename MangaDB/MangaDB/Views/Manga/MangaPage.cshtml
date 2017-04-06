@@ -10,20 +10,22 @@
         <script src="~/js/jquery-3.1.1.min.js"></script>
         <script src="~/js/mangapage.js"></script>
         <script>
+            name = @ViewData["mangaName"];
         </script>
     </head>
-    <body onload="obj.refresh()">
-        <div class="container">
+    <body>
+        <div class="container" id="main-cont">
             <div class="row">
                 <div class="col-md-4">
                     <img id="volumeCover">
-                    Random text
+                    Pretend there's an image here
                 </div>
                 <div class="col-md-8">
-                    <p id="title">@ViewData["mangaName"]</p>
-                    <p id="titleOriginal">東京喰種トーキョーグール</p>
-                    <p id="author">Ishida Sui</p>
-                    <p id="publisher">Shueisha</p>
+                    <p id="title"></p>
+                    <p id="titleOriginal"></p>
+                    <p id="author"></p>
+                    <p id="publisher"></p>
+                    <p id="summary"></p>
                 </div>
             </div>
             <div class="row">
