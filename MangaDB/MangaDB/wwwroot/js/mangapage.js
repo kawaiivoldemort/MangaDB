@@ -4,14 +4,16 @@ $jq(document).ready(function() {
     //code to connect to DB
     stageOneDownload = function() {
         //code to download first json
-        $jq.ajax({dataType: "json", url: "metadata", success: function(data) {
-                metadata = jq.parseJSON(data);
+        $jq.ajax({
+            dataType: "json",
+            url: "metadata",
+            success: function (metadata) {
+                $jq('#title').html(metadata.name);
+                $jq("#titleOriginal").html(metadata.japaneseName);
+                $jq("#author").html(metadata.author);
+                $jq("#publisher").html(metadata.publisher);
             }
         });
-        $jq('#title').html(metadata.name);
-        $jq("#titleOriginal").html(metadata.japaneseName);
-        $jq("#author").html(metadata.author);
-        $jq("#publisher").html(metadata.publisher);
     }
     /*
     stageTwoDownload = function() {
@@ -32,11 +34,13 @@ $jq(document).ready(function() {
     }*/
     stageThreeDownload = function() {
         //code to download synopsis
-        $jq.ajax({dataType: "json", url: "summary", success: function(data) {
-                synopsis = jq.parseJSON(data);
+        $jq.ajax({
+            dataType: "json",
+            url: "summary",
+            success: function (metadata) {
+                $jq("#summary").html(synopsis.summary);
             }
         });
-        $jq("#summary").html(synopsis.summary);
     }
     stageOneDownload();
     stageThreeDownload();

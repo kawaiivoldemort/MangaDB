@@ -1,5 +1,6 @@
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    @ViewData["mangaName"];
 *@
 @using System.IO
 @using System.Linq;
@@ -9,9 +10,6 @@
         <link rel="stylesheet" type="text/css" href="~/css/mangapage.css" />
         <script src="~/js/jquery-3.1.1.min.js"></script>
         <script src="~/js/mangapage.js"></script>
-        <script>
-            name = @ViewData["mangaName"];
-        </script>
     </head>
     <body>
         <div class="container" id="main-cont">
