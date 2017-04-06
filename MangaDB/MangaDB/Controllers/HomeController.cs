@@ -21,7 +21,7 @@ namespace MangaDB.Controllers
         // Should return a page catalouging manga
         public string MangaListPage()
         {
-            return "Manga Page";
+            return "Manga List Page";
         }
     }
 }
