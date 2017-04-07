@@ -30,10 +30,13 @@ namespace MangaMetadata
     public class MangaVolume
     {
         public int volumeNumber { get; set; }
+        public DateTime releaseDate { get; set; }
+        public string isbn { get; set; }
         public List<MangaChapter> chapters { get; set; }
     }
     public class MangaChapter
     {
         public int chapterNumber { get; set; }
+        public string chapterName { get; set; }
     }
 }

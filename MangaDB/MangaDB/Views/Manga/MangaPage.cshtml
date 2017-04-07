@@ -10,26 +10,109 @@
         <link rel="stylesheet" type="text/css" href="~/css/mangapage.css" />
         <script src="~/js/jquery-3.1.1.min.js"></script>
         <script src="~/js/mangapage.js"></script>
+        <script>
+            var $jq = jQuery.noConflict();
+            $jq(document).ready(function() {
+                getComments = function() {
+                    $("#mangaComments").attr("src", '/comments/@ViewData["mangaName"]');
+                    console.log(document.getElementById("mangaComments"));
+                }
+                getChapters = function() {
+                    $jq.ajax({
+                        dataType: "json",
+                        url: "chapters.aspx",
+                        success: function (chaptersList) {
+                            var _volumes = document.createElement("ul");
+                            for(var volumeIdx in chaptersList.volumes) {
+                                var volume = chaptersList.volumes[volumeIdx];
+                                var _volume = document.createElement("li");
+                                var _volumeData = document.createElement("div");
+                                _volumeData.innerHTML = "Volume " + volume.volumeNumber;
+                                var _volumeChapters = document.createElement("ul");
+                                for(var chapterIdx in volume.chapters) {
+                                    var chapter = volume.chapters[chapterIdx];
+                                    var _chapter = document.createElement("li");
+                                    var _chapterData = document.createElement("div");
+                                    _chapterData.innerHTML = "Chapter " + chapter.chapterNumber;
+                                    _chapter.appendChild(_chapterData);
+                                    _volumeChapters.appendChild(_chapter);
+                                }
+                                _volume.appendChild(_volumeData);
+                                _volume.appendChild(_volumeChapters);
+                                _volumes.appendChild(_volume);
+                            }
+                            $("#mangaChapters").append(_volumes);
+                            getComments();
+                        }
+                    });
+                }
+                getSummary = function() {
+                    $jq.ajax({
+                        dataType: "json",
+                        url: "summary.aspx",
+                        success: function (summaryData) {
+                            $jq('#mangaSummary').html(summaryData.summary);
+                            getChapters();
+                        }
+                    });
+                }
+                getMetadata = function() {
+                    $jq.ajax({
+                        dataType: "json",
+                        url: "metadata.aspx",
+                        success: function (metadata) {
+                            $jq('#mangaHeader').css('background-image', "url(" + metadata.imageUri + ")");
+                            $jq('#mangaName').html(metadata.name + " - ");
+                            $jq('#mangaNameJp').html(metadata.japaneseName);
+                            $jq('#mangaAuthor').html("<b>Author:</b> " + metadata.author);
+                            $jq('#mangaPublisher').html("<b>Publisher:</b> " + metadata.publisher);
+                            $jq('#mangaVolumeCount').html("<b>Volumes:</b> " + metadata.volumeCount);
+                            $jq('#mangaChapterCount').html("<b>Chapter:</b> " + metadata.chapterCount);
+                            $jq('#mangaWebsite').html(metadata.website);
+                            $jq('#mangaWebsite').attr('href', metadata.website);
+                            $jq('#mangaFansite').html(metadata.fansite);
+                            $jq('#mangaFansite').attr('href', metadata.fansite);
+                            getSummary();
+                        }
+                    });
+                }
+                getMetadata();
+            })
+        </script>
     </head>
     <body>
-        <div class="container" id="main-cont">
-            <div class="row">
-                <div class="col-md-4">
-                    <img id="volumeCover">
-                    Pretend there's an image here
-                </div>
-                <div class="col-md-8">
-                    <p id="title"></p>
-                    <p id="titleOriginal"></p>
-                    <p id="author"></p>
-                    <p id="publisher"></p>
-                    <p id="summary"></p>
-                </div>
+        <div id="mangaHeader">
+            <div id="mangaTitle">
+                <p id="mangaName"></p>
+                <p id="mangaNameJp"></p>
             </div>
-            <div class="row">
-                <div class="container" id="chapterList">
+        </div>
+        <div id="mangaContent">
+            <div id="mangaLeftPane">
+                <div id="mangaMetadata">
+                    <p id="mangaAuthor"></p>
+                    <p id="mangaPublisher"></p>
+                    <p id="mangaChapterCount"></p>
+                    <p id="mangaVolumeCount"></p>
+                </div>
+                <p id="mangaSummary"></p>
+            </div>
+            <div id="mangaRightPane">
+                <div id="mangaChapters">
                 </div>
             </div>
         </div>
+        <div id="footer">
+            <div>
+                <a id="mangaWebsite"></a>
+            </div>
+            <div>
+                <a id="mangaFansite"></a>
+            </div>
+        </div>
+        <p id="commentsHeading">Comments</p>
+        <iframe id="mangaComments">
+        </iframe>
+        <hr/>
     </body>
 </html>

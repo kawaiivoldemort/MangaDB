@@ -1,3 +1,63 @@
-#main-cont {
-    padding: 1em;
+#mangaHeader {
+    margin-top: 10px;
+    padding: 10px;
+    height: 400px;
+    width: 100%;
+    position: relative;
+    color: white;
+    text-transform: uppercase;
+}
+#mangaTitle {
+    position: absolute;
+    bottom: 0;
+}
+#mangaName {
+    font-size: 5em;
+    display: inline;
+    font-style: italic;
+}
+#mangaNameJp {
+    font-size: 3em;
+    display: inline;
+}
+#mangaContent {
+    width: 100%;
+    height: 100vh;
+	display: table;
+}
+#mangaLeftPane {
+	display:table-cell;
+    width: 70%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#mangaRightPane {
+	display:table-cell;
+    width: 30%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#mangaChapters {
+    background-color: lightgrey;
+    border: 1px solid black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 500px;
+    overflow: auto;
+}
+#mangaMetadata {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 200px;
+    padding: 10px;
+    background-color: lightgrey;
+    border: 1px solid black;
+}
+#mangaComments {
+    border: none;
+    width: 90%;
+    height: 600px;
+}
+#commentsHeading {
+    font-size: 2em;
 }

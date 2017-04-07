@@ -39,7 +39,7 @@ namespace MangaDB.Controllers
             replies.Add(new Reply
             {
                 username = "Nikhil Prabhu",
-                uImgSrc = "/images/AdPanel/f928b292.jpg",
+                uImgSrc = "/images/AdPanel/bakuman.jpg",
                 usernameTo = "Pradeep",
                 content = "I AM NOT!!",
                 date = DateTime.Now
@@ -47,7 +47,7 @@ namespace MangaDB.Controllers
             replies.Add(new Reply
             {
                 username = "Naveen Patel",
-                uImgSrc = "/images/AdPanel/f928b292.jpg",
+                uImgSrc = "/images/AdPanel/bakuman.jpg",
                 usernameTo = "Nikhil Prabhu",
                 content = "Of course you are",
                 date = DateTime.Now
@@ -56,7 +56,7 @@ namespace MangaDB.Controllers
             data.Add(new Comment
             {
                 username = "Pradeep",
-                uImgSrc = "/images/AdPanel/f928b292.jpg",
+                uImgSrc = "/images/AdPanel/bakuman.jpg",
                 content = "Nikhil Prabhu is an old man",
                 date = DateTime.Now,
                 replies = replies
@@ -64,7 +64,7 @@ namespace MangaDB.Controllers
             data.Add(new Comment
             {
                 username = "Pradyumna",
-                uImgSrc = "/images/AdPanel/f928b292.jpg",
+                uImgSrc = "/images/AdPanel/bakuman.jpg",
                 content = "This article is stupid",
                 date = DateTime.Now,
                 replies = new List<Reply>()

@@ -1,3 +1,7 @@
+#comments {
+    width: 95%;
+}
+
 .comment {
     border-top: 1px solid lightgrey;
     border-bottom: 1px solid lightgrey;
