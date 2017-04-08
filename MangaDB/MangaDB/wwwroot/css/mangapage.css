@@ -1,3 +1,21 @@
+.contentType {
+    font-family: fantasy;
+    font-size: 1.5em;
+    border-bottom: 1px solid black;
+    width: 100%;
+}
+.commentsContainer {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.metaType {
+    display: inline;
+    font-style: italic;
+    font-size: 1.2em;
+}
+.footer {
+    margin: 10px;
+}
 #mangaHeader {
     margin-top: 10px;
     padding: 10px;
@@ -6,6 +24,8 @@
     position: relative;
     color: white;
     text-transform: uppercase;
+    background-size: 120% 120%;
+    background-position: center;
 }
 #mangaTitle {
     position: absolute;
@@ -22,42 +42,33 @@
 }
 #mangaContent {
     width: 100%;
-    height: 100vh;
-	display: table;
+    margin-top: 1em;
+	display: inline-flex;
 }
 #mangaLeftPane {
-	display:table-cell;
-    width: 70%;
-    padding-left: 10px;
-    padding-right: 10px;
+	display: block;
+    width: 69%;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 #mangaRightPane {
-	display:table-cell;
-    width: 30%;
-    padding-left: 10px;
-    padding-right: 10px;
+	display: block;
+    width: 29%;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 #mangaChapters {
-    background-color: lightgrey;
-    border: 1px solid black;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    height: 500px;
+    height: 600px;
     overflow: auto;
+    border-bottom: 1px solid black;
 }
 #mangaMetadata {
     margin-top: 10px;
     margin-bottom: 10px;
     width: 200px;
-    padding: 10px;
-    background-color: lightgrey;
-    border: 1px solid black;
 }
 #mangaComments {
     border: none;
-    width: 90%;
+    width: 100%;
     height: 600px;
-}
-#commentsHeading {
-    font-size: 2em;
 }

@@ -2,7 +2,6 @@
     font-size: 5em;
     font-family: 'Old English Text MT';
 }
-
 #caption {
     width: 100%;
     text-align: center;
@@ -11,13 +10,11 @@
     font-size: 2em;
     font-family: 'Arial Narrow', Arial, sans-serif;
 }
-
 .ad > img {
     height: 400px;
     width: 100%;
     border: 1px solid black;
 }
-
 .new > img {
     height: 200px;
     width: 100%;
@@ -26,7 +23,6 @@
     border-left: 0.5px solid black;
     border-right: 0.5px solid black;
 }
-
 .new > img {
     height: 200px;
     width: 100%;
@@ -35,7 +31,6 @@
     border-left: 0.5px solid black;
     border-right: 0.5px solid black;
 }
-
 .trending > img {
     height: 200px;
     width: 100%;
@@ -44,7 +39,6 @@
     border-left: 1px solid black;
     border-right: 1px solid black;
 }
-
 .allTimeFavorites > img {
     height: 200px;
     width: 100%;
@@ -53,19 +47,16 @@
     border-left: 1px solid black;
     border-right: 1px solid black;
 }
-
 .contentType {
     font-family: fantasy;
     font-size: 1.5em;
     border-bottom: 1px solid black;
 }
-
 #sideBySideContainer {
     display: flex;
     padding-top: 30px;
     padding-bottom: 20px;
 }
-
 #sideBySideContainer > #trendingContainer {
     display: block;
     float: left;
@@ -79,7 +70,6 @@
     border-left: 1px solid black;
     background-color: lightgray;
 }
-
 #sideBySideContainer > #allTimeFavoritesContainer {
     display: block;
     float: right;
@@ -93,14 +83,12 @@
     border-right: 1px solid black;
     background-color: lightgray;
 }
-
 #newsSlider > .article {
     border: 1px solid black;
     padding: 10px;
     margin: 5px;
     background-color: lightgray;
 }
-
 #newsSlider > .article > .newsTitle {
     font-size: 1em;
     font-weight: bold;

@@ -9,7 +9,6 @@
     <head>
         <link rel="stylesheet" type="text/css" href="~/css/mangapage.css" />
         <script src="~/js/jquery-3.1.1.min.js"></script>
-        <script src="~/js/mangapage.js"></script>
         <script>
             var $jq = jQuery.noConflict();
             $jq(document).ready(function() {
@@ -22,6 +21,7 @@
                         dataType: "json",
                         url: "chapters.aspx",
                         success: function (chaptersList) {
+                            console.log("called");
                             var _volumes = document.createElement("ul");
                             for(var volumeIdx in chaptersList.volumes) {
                                 var volume = chaptersList.volumes[volumeIdx];
@@ -64,10 +64,10 @@
                             $jq('#mangaHeader').css('background-image', "url(" + metadata.imageUri + ")");
                             $jq('#mangaName').html(metadata.name + " - ");
                             $jq('#mangaNameJp').html(metadata.japaneseName);
-                            $jq('#mangaAuthor').html("<b>Author:</b> " + metadata.author);
-                            $jq('#mangaPublisher').html("<b>Publisher:</b> " + metadata.publisher);
-                            $jq('#mangaVolumeCount').html("<b>Volumes:</b> " + metadata.volumeCount);
-                            $jq('#mangaChapterCount').html("<b>Chapter:</b> " + metadata.chapterCount);
+                            $jq('#mangaAuthor').html("<p class='metaType'>Author:</p> " + metadata.author);
+                            $jq('#mangaPublisher').html("<p class='metaType'>Publisher:</p> " + metadata.publisher);
+                            $jq('#mangaVolumeCount').html("<p class='metaType'>Volumes:</p> " + metadata.volumeCount);
+                            $jq('#mangaChapterCount').html("<p class='metaType'>Chapter:</p> " + metadata.chapterCount);
                             $jq('#mangaWebsite').html(metadata.website);
                             $jq('#mangaWebsite').attr('href', metadata.website);
                             $jq('#mangaFansite').html(metadata.fansite);
@@ -89,30 +89,37 @@
         </div>
         <div id="mangaContent">
             <div id="mangaLeftPane">
+                <p class="contentType">PLOT SYNOPSIS</p>
+                <p id="mangaSummary"></p>
+            </div>
+            <div id="mangaRightPane">
+                <p class="contentType">INFO</p>
                 <div id="mangaMetadata">
                     <p id="mangaAuthor"></p>
                     <p id="mangaPublisher"></p>
                     <p id="mangaChapterCount"></p>
                     <p id="mangaVolumeCount"></p>
                 </div>
-                <p id="mangaSummary"></p>
-            </div>
-            <div id="mangaRightPane">
+                <p class="contentType">CHAPTERS</p>
                 <div id="mangaChapters">
                 </div>
             </div>
         </div>
-        <div id="footer">
+        <div class="footer">
+            <p class="contentType">LINKS</p>
             <div>
+                <p class="metaType">Official Website:</p>
                 <a id="mangaWebsite"></a>
             </div>
             <div>
+                <p class="metaType">Fansites:</p>
                 <a id="mangaFansite"></a>
             </div>
         </div>
-        <p id="commentsHeading">Comments</p>
-        <iframe id="mangaComments">
-        </iframe>
-        <hr/>
+        <div class="commentsContainer">
+            <p class="contentType">Comments</p>
+            <iframe id="mangaComments">
+            </iframe>
+        </div>
     </body>
 </html>

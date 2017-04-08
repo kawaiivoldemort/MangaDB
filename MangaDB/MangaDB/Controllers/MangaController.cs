@@ -25,7 +25,7 @@ namespace MangaDB.Controllers
                 publisher = "Shueisha",
                 volumeCount = 74,
                 chapterCount = 686,
-                imageUri = "/images/AdPanel/bakuman.jpg",
+                imageUri = "/images/MangaImages/bleach.jpg",
                 website = "https://www.viz.com/bleach",
                 fansite = "http://www.fanpop.com/clubs/bleach-anime"
             };
