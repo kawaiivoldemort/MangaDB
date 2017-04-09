@@ -21,7 +21,6 @@
                         dataType: "json",
                         url: "chapters.aspx",
                         success: function (chaptersList) {
-                            console.log("called");
                             var _volumes = document.createElement("ul");
                             for(var volumeIdx in chaptersList.volumes) {
                                 var volume = chaptersList.volumes[volumeIdx];
@@ -100,20 +99,21 @@
                     <p id="mangaChapterCount"></p>
                     <p id="mangaVolumeCount"></p>
                 </div>
+                <div class="linksDiv">
+                    <p class="contentType">LINKS</p>
+                    <div>
+                        <p class="metaType">Official Website:</p>
+                        <a id="mangaWebsite"></a>
+                    </div>
+                    <div>
+                        <p class="metaType">Fansites:</p>
+                        <a id="mangaFansite"></a>
+                    </div>
+                </div>
                 <p class="contentType">CHAPTERS</p>
                 <div id="mangaChapters">
                 </div>
-            </div>
-        </div>
-        <div class="footer">
-            <p class="contentType">LINKS</p>
-            <div>
-                <p class="metaType">Official Website:</p>
-                <a id="mangaWebsite"></a>
-            </div>
-            <div>
-                <p class="metaType">Fansites:</p>
-                <a id="mangaFansite"></a>
+                
             </div>
         </div>
         <div class="commentsContainer">
