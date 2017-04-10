@@ -27,6 +27,8 @@
                                 $jq(gridRow).addClass('row');
                                 gridRow = null;
                             }
+                            var gridLink = document.createElement("a");
+                            $jq(gridLink).attr('href', '/manga/' + manga.linkName + '/index.aspx');
                             var gridCell = document.createElement("div");
                             $jq(gridCell).addClass('col-md-2');
                             //fill gridCell with data
@@ -35,8 +37,10 @@
                             $jq(image).addClass('mangaImage');
                             var name = document.createElement("p");
                             $jq(name).html(manga.name);
+                            $jq(name).addClass('mangaTitle');
                             $jq(gridCell).append(image, name);
-                            $jq(gridRow).append(gridCell);
+                            $jq(gridLink).append(gridCell);
+                            $jq(gridRow).append(gridLink);
                         }
                         if(gridRow != null) {
                             $jq('#mainDiv').append(gridRow);                            
@@ -47,6 +51,7 @@
         </script>
     </head>
     <body onload="getManga()">
+        <p class="contentType">LIST OF MANGA</p>
         <div id="mainDiv" class="container">
             
         </div>

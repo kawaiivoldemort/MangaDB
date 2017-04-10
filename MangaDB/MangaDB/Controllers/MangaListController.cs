@@ -19,34 +19,29 @@ namespace MangaDB.Controllers
         {
             var list = new List<MangaListItem>();
             list.Add(new MangaListItem {
-                name = "bleach",
+                name = "Bleach",
                 imageUri = "/images/MangaImages/bleach.jpg",
-                ifAliased = false,
-                alias = null
+                linkName = "bleach"
             });
             list.Add(new MangaListItem {
-                name = "naruto",
+                name = "Naruto",
                 imageUri = "/images/MangaImages/bleach.jpg",
-                ifAliased = false,
-                alias = null
+                linkName = "naruto"
             });
             list.Add(new MangaListItem {
-                name = "konosuba",
+                name = "Konosuba",
                 imageUri = "/images/MangaImages/bleach.jpg",
-                ifAliased = false,
-                alias = null
+                linkName = "konosuba"
             });
             list.Add(new MangaListItem {
-                name = "erased",
+                name = "Erased",
                 imageUri = "/images/MangaImages/bleach.jpg",
-                ifAliased = false,
-                alias = null
+                linkName = "erased"
             });
             list.Add(new MangaListItem {
-                name = "inuyasha",
+                name = "Inuyasha",
                 imageUri = "/images/MangaImages/bleach.jpg",
-                ifAliased = false,
-                alias = null
+                linkName = "inuyasha"
             });
             return Json(list);
         }

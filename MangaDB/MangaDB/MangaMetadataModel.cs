@@ -43,7 +43,6 @@ namespace MangaMetadata
     {
         public string name { get; set; }
         public string imageUri { get; set; }
-        public bool ifAliased { get; set; }
-        public string alias{ get; set; }
+        public string linkName{ get; set; }
     }
 }
