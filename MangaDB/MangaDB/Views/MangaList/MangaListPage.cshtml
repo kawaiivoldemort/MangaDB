@@ -1,0 +1,54 @@
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    @ViewData["mangaName"];
+*@
+@using System.IO
+@using System.Linq;
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="~/css/mangalist.css" />
+        <script src="~/js/jquery-3.1.1.min.js"></script>
+        <script>
+            var $jq = jQuery.noConflict();
+            function getManga() {
+                $jq.ajax({
+                    dataTye: "json",
+                    url: "list.aspx",
+                    success: function(mangaList) {
+                        console.log(mangaList);
+                        var gridRow = document.createElement("div");
+                        $jq(gridRow).addClass('row');
+                        for(var idx in mangaList) {
+                            var manga = mangaList[idx];
+                            if(gridRow.childElementCount > 5) {
+                                $jq('#mainDiv').append(gridRow);
+                                gridRow = document.createElement("div");
+                                $jq(gridRow).addClass('row');
+                                gridRow = null;
+                            }
+                            var gridCell = document.createElement("div");
+                            $jq(gridCell).addClass('col-md-2');
+                            //fill gridCell with data
+                            var image = document.createElement("img");
+                            $jq(image).attr('src', manga.imageUri);
+                            $jq(image).addClass('mangaImage');
+                            var name = document.createElement("p");
+                            $jq(name).html(manga.name);
+                            $jq(gridCell).append(image, name);
+                            $jq(gridRow).append(gridCell);
+                        }
+                        if(gridRow != null) {
+                            $jq('#mainDiv').append(gridRow);                            
+                        }
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body onload="getManga()">
+        <div id="mainDiv" class="container">
+            
+        </div>
+    </body>
+</html>

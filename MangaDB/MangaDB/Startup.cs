@@ -59,8 +59,12 @@ namespace MangaDB
                     template: "{controller=Home}",
                     defaults: new { action = "Homepage" });
                 routes.MapRoute(
+                    name: "getMangaList",
+                    template: "{controller=MangaList}/list.aspx",
+                    defaults: new { action = "MangaListData" });
+                routes.MapRoute(
                     name: "mangaList",
-                    template: "{controller=MangaList}",
+                    template: "{controller=MangaList}/index.aspx",
                     defaults: new { action = "MangaListPage" });
                 routes.MapRoute(
                     name: "mangaSummary",

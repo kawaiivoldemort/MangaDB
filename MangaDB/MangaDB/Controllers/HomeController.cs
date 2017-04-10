@@ -15,13 +15,4 @@ namespace MangaDB.Controllers
             return View();
         }
     }
-    public class MangaListController : Controller
-    {
-        // List of Manga Controller
-        // Should return a page catalouging manga
-        public string MangaListPage()
-        {
-            return "Manga List Page";
-        }
-    }
 }
