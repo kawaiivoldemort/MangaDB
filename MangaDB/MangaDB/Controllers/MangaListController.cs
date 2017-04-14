@@ -24,6 +24,36 @@ namespace MangaDB.Controllers
                 linkName = "bleach"
             });
             list.Add(new MangaListItem {
+                name = "Bllom",
+                imageUri = "/images/MangaImages/bleach.jpg",
+                linkName = "bleach"
+            });
+            list.Add(new MangaListItem {
+                name = "Black",
+                imageUri = "/images/MangaImages/bleach.jpg",
+                linkName = "bleach"
+            });
+            list.Add(new MangaListItem {
+                name = "Briny",
+                imageUri = "/images/MangaImages/bleach.jpg",
+                linkName = "bleach"
+            });
+            list.Add(new MangaListItem {
+                name = "Boffle",
+                imageUri = "/images/MangaImages/bleach.jpg",
+                linkName = "bleach"
+            });
+            list.Add(new MangaListItem {
+                name = "Booked",
+                imageUri = "/images/MangaImages/bleach.jpg",
+                linkName = "bleach"
+            });
+            list.Add(new MangaListItem {
+                name = "Bandana",
+                imageUri = "/images/MangaImages/bleach.jpg",
+                linkName = "bleach"
+            });
+            list.Add(new MangaListItem {
                 name = "Naruto",
                 imageUri = "/images/MangaImages/bleach.jpg",
                 linkName = "naruto"

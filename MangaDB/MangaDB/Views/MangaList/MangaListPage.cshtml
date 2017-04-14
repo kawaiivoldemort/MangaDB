@@ -16,12 +16,25 @@
                     dataTye: "json",
                     url: "list.aspx",
                     success: function(mangaList) {
-                        console.log(mangaList);
-                        var gridRow = document.createElement("div");
-                        $jq(gridRow).addClass('row');
+                        mangaList.sort(compareName);
+                        var letter = 'A';
                         for(var idx in mangaList) {
                             var manga = mangaList[idx];
-                            if(gridRow.childElementCount > 5) {
+                            if (!manga.name.startsWith(letter)) {
+                                while (!manga.name.startsWith(letter)) {
+                                    letter = nextChar(letter);
+                                }
+                                var lettHead = document.createElement('div');
+                                $jq(lettHead).addClass('letter-head');
+                                $jq(lettHead).html(letter);
+                                var gridRow = document.createElement("div");
+                                $jq(gridRow).addClass('row');
+                                $jq(gridRow).append(lettHead);
+                                $jq('#mainDiv').append(gridRow);
+                                gridRow = document.createElement("div");
+                                $jq(gridRow).addClass('row');
+                            }
+                            if(gridRow.childElementCount > 7) {
                                 $jq('#mainDiv').append(gridRow);
                                 gridRow = document.createElement("div");
                                 $jq(gridRow).addClass('row');
@@ -41,12 +54,18 @@
                             $jq(gridCell).append(image, name);
                             $jq(gridLink).append(gridCell);
                             $jq(gridRow).append(gridLink);
-                        }
-                        if(gridRow != null) {
-                            $jq('#mainDiv').append(gridRow);                            
+                            if(gridRow != null) {
+                                $jq('#mainDiv').append(gridRow);                            
+                            }
                         }
                     }
                 });
+            }
+            function compareName(a, b) {
+                return a.name.localeCompare(b.name);
+            }
+            function nextChar(c) {
+                return String.fromCharCode(c.charCodeAt(0) + 1);
             }
         </script>
     </head>
