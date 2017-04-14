@@ -83,6 +83,14 @@ namespace MangaDB
                     template: "{controller=Manga}/{mangaName}/index.aspx",
                     defaults: new { action = "MangaPage" });
                 routes.MapRoute(
+                    name: "signin",
+                    template: "{controller=Users}/signin.aspx",
+                    defaults: new { action = "Signin"});
+                routes.MapRoute(
+                    name: "userinfo",
+                    template: "{controller=Users}/user.aspx",
+                    defaults: new { action = "UserInfo"});
+                routes.MapRoute(
                     name: "getComments",
                     template: "{controller=GetComments}/{mangaName}/{lastUpdated:int}",
                     defaults: new { action = "GetCommentsAsync" });

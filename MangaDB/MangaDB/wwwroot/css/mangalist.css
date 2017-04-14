@@ -7,6 +7,7 @@
 }
 .letter-head {
     font-size: 3em;
+    margin-left: 11px;
 }
 .col-md-2 {
     //margin: 10px;
@@ -26,4 +27,8 @@
     font-size: 1.2em;
     text-align: center;
     color: #000;
+}
+#mainDiv {
+    padding: 0;
+    margin: 0;
 }
