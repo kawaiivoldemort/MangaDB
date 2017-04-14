@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity.MongoDB;
 
 namespace MangaDB
 {
@@ -32,6 +33,9 @@ namespace MangaDB
         {
             // Add framework services.
             services.AddMvc();
+            // Add the identity services.
+            services.AddIdentityWithMongoStores(
+                Configuration.GetConnectionString("DefaultConnection"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +53,8 @@ namespace MangaDB
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseIdentity();
 
             app.UseStaticFiles();
 
@@ -83,13 +89,17 @@ namespace MangaDB
                     template: "{controller=Manga}/{mangaName}/index.aspx",
                     defaults: new { action = "MangaPage" });
                 routes.MapRoute(
-                    name: "signin",
-                    template: "{controller=Users}/signin.aspx",
-                    defaults: new { action = "Signin"});
+                    name: "login",
+                    template: "{controller=Login}/login.aspx",
+                    defaults: new { action = "LoginPage"});
                 routes.MapRoute(
-                    name: "userinfo",
-                    template: "{controller=Users}/user.aspx",
-                    defaults: new { action = "UserInfo"});
+                    name: "register",
+                    template: "{controller=Login}/register.aspx",
+                    defaults: new { action = "RegisterPage" });
+                routes.MapRoute(
+                    name: "getUserinfo",
+                    template: "{controller=Login}/user.aspx",
+                    defaults: new { action = "GetUserInfo"});
                 routes.MapRoute(
                     name: "getComments",
                     template: "{controller=GetComments}/{mangaName}/{lastUpdated:int}",

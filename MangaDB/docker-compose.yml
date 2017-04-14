@@ -1,8 +1,21 @@
 version: '2'
 
 services:
+  mongodb:
+    image: mongodb
+    build:
+      context: ./MongoDB
+      dockerfile: Dockerfile
+    labels:
+      com.microsoft.visualstudio.targetoperatingsystem: linux
+    ports:
+    - "27017:27017"
   mangadb:
     image: mangadb
     build:
       context: ./MangaDB
       dockerfile: Dockerfile
+    links:
+    - mongodb:database
+    depends_on:
+    - mongodb
