@@ -35,6 +35,34 @@
                     <li><a href="http://localhost:5000/mangalist/index.aspx">Mangas</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" id="userInfo">
+                    <script>
+                        var $jq = jQuery.noConflict();
+                        $jq(document).ready(function() {
+                            getUserDetails = function() {
+                                $jq.ajax({
+                                    dataType: "json",
+                                    url: "/login/user.aspx",
+                                    success: function (userData) {
+                                        $jq('#pp').attr("src", userData.pp);
+                                        $jq('#user').html(userData.username);
+                                    }
+                                });
+                            }
+                            getUserDetails();
+                            logout = function() {
+                                
+                            }
+                        })
+                    </script>
+                    <p id="user"></p>
+                    <img id="pp">
+                    <div class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Dropdown <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/login/user.aspx">User Info</a></li>
+                            <li><p onclick="logout()">Logout</p></li>
+                        </ul>
+                    </div>
                 </ul>
             </div>
         </div>
