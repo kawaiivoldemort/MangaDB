@@ -117,6 +117,10 @@ namespace MangaDB
                     template: "{controller=Login}/register.aspx",
                     defaults: new { action = "RegisterPage" });
                 routes.MapRoute(
+                    name: "logout",
+                    template: "{controller=Login}/logout.aspx",
+                    defaults: new { action = "Logout" });
+                routes.MapRoute(
                     name: "getUserDetails",
                     template: "{controller=Login}/user.aspx",
                     defaults: new { action = "GetUserDetails"});
