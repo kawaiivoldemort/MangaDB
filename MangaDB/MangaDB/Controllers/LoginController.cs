@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.MongoDB;
+using UserData;
 
 namespace MangaDB.Controllers
 {
@@ -15,7 +16,7 @@ namespace MangaDB.Controllers
 
         public LoginController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
-            // The UserManager is what we’ll be using to create users and generate validation tokens. 
+            // The UserManager is what weï¿½ll be using to create users and generate validation tokens. 
             this._userManager = userManager;
             // SignInManager allows us to do password validation and sign in/out the users by managing the authentication cookies for us.
             this._signInManager = signInManager;
@@ -86,9 +87,20 @@ namespace MangaDB.Controllers
             return Redirect("~/");
         }
 
-        //public JsonResult GetUserDetails()
-        //{
-        //    return View();
-        //}
+        public IActionResult UserInfo()
+        {
+            return View();
+        }
+
+        public JsonResult GetUserInfo()
+        {
+            var userdata = new UserInfo
+            {
+                username = "Guy",
+                email = "Guy@website.com",
+                profilePic = "/images/AdPanel/bakuman.jpg"
+            };
+            return Json(userdata);
+        }
     }
 }

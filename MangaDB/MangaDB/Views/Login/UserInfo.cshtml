@@ -1,0 +1,43 @@
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    @ViewData["mangaName"];
+*@
+@using System.IO
+@using System.Linq;
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="~/css/userinfo.css" />
+        <script src="~/js/jquery-3.1.1.min.js"></script>
+        <script>
+            var $jq = jQuery.noConflict();
+            $jq(document).ready(function() {
+                getInfo = function() {
+                    $jq.ajax({
+                        dataType: "json",
+                        url: "getuserinfo.aspx",
+                        success: function (userData) {
+                            $jq('#profile-pic').attr("src", userData.profilePic);
+                            $jq('#username').html(userData.username);
+                            $jq('#email-id').html(userData.email);
+                        }
+                    });
+                }
+                getInfo();
+            })
+        </script>
+    </head>
+    <body>
+        <p class="contentType">User Info</p>
+        <div id="container">
+            <img id="profile-pic"></p>
+            <div id="userinfo">
+                <p class="metaType">Username:</p>
+                <p id="username"></p>
+                <p class="metaType">Email:</p>
+                <p id="email-id"></p>
+            </div> 
+        </div>
+        
+    </body>
+</html>

@@ -1,0 +1,29 @@
+.contentType {
+    margin-top: 10px;
+    font-family: fantasy;
+    font-size: 1.5em;
+    border-bottom: 1px solid black;
+    width: 100%;
+}
+.metaType {
+    display: inline;
+    font-style: italic;
+    font-size: 1.2em;
+}
+#container {
+    display:inline-flex;
+}
+#profile-pic {
+    margin: 20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+}
+#userinfo {
+    margin: 20px;
+}
+#username {
+
+}
+#email-id {
+}

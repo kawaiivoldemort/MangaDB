@@ -97,8 +97,12 @@ namespace MangaDB
                     template: "{controller=Login}/register.aspx",
                     defaults: new { action = "RegisterPage" });
                 routes.MapRoute(
-                    name: "getUserinfo",
+                    name: "userinfo",
                     template: "{controller=Login}/user.aspx",
+                    defaults: new { action = "UserInfo"});
+                routes.MapRoute(
+                    name: "getuserinfo",
+                    template: "{controller=Login}/getuserinfo.aspx",
                     defaults: new { action = "GetUserInfo"});
                 routes.MapRoute(
                     name: "getComments",
