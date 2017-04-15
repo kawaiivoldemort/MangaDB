@@ -6,16 +6,6 @@
 @{
     string title = "MangaDB";
     string caption = "the lightning golden holy crossbow of manga databases";
-    string webrootPath = Startup.envPath;
-    string adImagePath = "/images/AdPanel";
-    string[] adImages = AccessoryFunctions.GetImages(adImagePath);
-    string newImagePath = "/images/NewPanel";
-    string[] newImages = AccessoryFunctions.GetImages(newImagePath);
-    string trendingImagePath = "/images/TrendingPanel";
-    string[] trendingImages = AccessoryFunctions.GetImages(trendingImagePath);
-    string allTimeFavoritesImagePath = "/images/AllTimeFavoritesPanel";
-    string[] allTimeFavoritesImages = AccessoryFunctions.GetImages(allTimeFavoritesImagePath);
-    NewsArticle[] news = AccessoryFunctions.GetNews();
 }
 <!DOCTYPE html>
 <html>
@@ -28,7 +18,203 @@
         <link rel="stylesheet" type="text/css" href="~/css/slick-theme.css" />
         <script src="~/js/jquery-3.1.1.min.js"></script>
         <script src="~/js/slick.min.js"></script>
-        <script src="~/js/homepage.js"></script>
+        <script>
+            var $jq = jQuery.noConflict();
+
+            class HomepageLoader {
+                constructor() {
+                    this.defaultRefreshTime = 5000;
+                    this.currentRefreshTime = 5000,
+                    this.timeout = null;
+                }
+                loadNews() {
+                    $jq.ajax({
+                        dataType: "json",
+                        url: "home/news.aspx",
+                        success: function (articles) {
+                            $jq("#newsSlider").html("");
+                            this.currentRefreshTime = this.defaultRefreshTime;
+                            for(var valueIdx in articles) {
+                                if(valueIdx == 0) {
+                                    continue;
+                                }
+                                var value = articles[valueIdx];
+                                var article = document.createElement("div");
+                                $jq(article).addClass("article");
+                                var title = document.createElement("p");
+                                $jq(title).addClass("newsTitle");
+                                $jq(title).html(value.title);
+                                var content = document.createElement("p");
+                                $jq(content).addClass("newsContent");
+                                $jq(content).html(value.content);
+                                $jq(article).append(title, content);
+                                $jq("#newsSlider").append(article);
+                            }
+                            this.timeout = setTimeout(this.loadNews, this.currentRefreshTime);
+                        },
+                        timeout: 2000,
+                        error: function(xhr, status, errorThrown) {
+                            if(status === "timeout") {
+                                if(timeout) {
+                                    clearTimeout(this.timeout);
+                                }
+                                this.currentRefreshTime *= 2;
+                                setTimeout(this.loadNews, this.currentRefreshTime);
+                            } 
+                        }
+                        
+                    });
+                }
+                loadFavorites() {
+                    $jq.ajax({
+                        dataType: "json",
+                        url: "home/favorites.aspx",
+                        success: function (imgSrcs) {
+                            for(var valueIdx in imgSrcs) {
+                                if(valueIdx == 0) {
+                                    continue;
+                                }
+                                var value = imgSrcs[valueIdx];
+                                var div = document.createElement("div");
+                                $jq(div).addClass("allTimeFavorites");
+                                var image = document.createElement("img");
+                                $jq(image).attr("src", imgSrcs[0] + "/" + value + ".jpg");
+                                $jq(div).append(image);
+                                $jq("#allTimeFavoritesSlider").append(div);
+                            }
+                            $jq('#allTimeFavoritesSlider').slick({
+                                vertical: true,
+                                verticalSwiping: true,
+                                appendArrows: "htmlString",
+                                infinite: true,
+                                speed: 300,
+                                slidesToShow: 3,
+                                autoplay: true,
+                                autoplaySpeed: 8000,
+                            });
+                            this.loadNews();
+                        }.bind(this)
+                    });
+                }
+                loadTrending() {
+                    $jq.ajax({
+                        dataType: "json",
+                        url: "home/trending.aspx",
+                        success: function (imgSrcs) {
+                            for(var valueIdx in imgSrcs) {
+                                if(valueIdx == 0) {
+                                    continue;
+                                }
+                                var value = imgSrcs[valueIdx];
+                                var div = document.createElement("div");
+                                $jq(div).addClass("trending");
+                                var image = document.createElement("img");
+                                $jq(image).attr("src", imgSrcs[0] + "/" + value + ".jpg");
+                                $jq(div).append(image);
+                                $jq("#trendingSlider").append(div);
+                            }
+                            $jq('#trendingSlider').slick({
+                                vertical: true,
+                                verticalSwiping: true,
+                                arrows: false,
+                                infinite: true,
+                                speed: 300,
+                                slidesToShow: 3,
+                                autoplay: true,
+                                autoplaySpeed: 8000,
+                            });
+                            this.loadFavorites();
+                        }.bind(this)
+                    });
+                }
+                loadNew() {
+                    $jq.ajax({
+                        dataType: "json",
+                        url: "home/new.aspx",
+                        success: function (imgSrcs) {
+                            for(var valueIdx in imgSrcs) {
+                                if(valueIdx == 0) {
+                                    continue;
+                                }
+                                var value = imgSrcs[valueIdx];
+                                var div = document.createElement("div");
+                                $jq(div).addClass("new");
+                                var image = document.createElement("img");
+                                $jq(image).attr("src", imgSrcs[0] + "/" + value + ".jpg");
+                                $jq(div).append(image);
+                                $jq("#newSlider").append(div);
+                            }
+                            $jq('#newSlider').slick({
+                                centerMode: true,
+                                centerPadding: '60px',
+                                infinite: true,
+                                slidesToShow: 3,
+                                responsive: [
+                                    {
+                                        breakpoint: 768,
+                                        settings: {
+                                            arrows: false,
+                                            centerMode: true,
+                                            centerPadding: '40px',
+                                            slidesToShow: 3
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 480,
+                                        settings: {
+                                            arrows: false,
+                                            centerMode: true,
+                                            centerPadding: '40px',
+                                            slidesToShow: 1
+                                        }
+                                    }
+                                ],
+                                autoplay: true,
+                                autoplaySpeed: 2000,
+                            });
+                            this.loadTrending();
+                        }.bind(this)
+                    });
+                }
+                loadAds() {
+                    $jq.ajax({
+                        dataType: "json",
+                        url: "home/ads.aspx",
+                        success: function (imgSrcs) {
+                            for(var valueIdx in imgSrcs) {
+                                if(valueIdx == 0) {
+                                    continue;
+                                }
+                                var value = imgSrcs[valueIdx];
+                                var div = document.createElement("div");
+                                $jq(div).addClass("ad");
+                                var image = document.createElement("img");
+                                $jq(image).attr("src", imgSrcs[0] + "/" + value + ".jpg");
+                                $jq(div).append(image);
+                                $jq("#advertSlider").append(div);
+                            }
+                            $jq('#advertSlider').slick({
+                                dots: true,
+                                infinite: true,
+                                speed: 300,
+                                slidesToShow: 1,
+                                autoplay: true,
+                                autoplaySpeed: 2000,
+                            });
+                            this.loadNew();
+                        }.bind(this)
+                    });
+                }
+                start() {
+                    this.loadAds();
+                }
+            }
+
+            $jq(document).ready(function() {
+                var hpl = new HomepageLoader();
+                hpl.start();
+            });
+        </script>
     </head>
     <body>
         <p id="title">@title</p>
@@ -37,59 +223,24 @@
         </p>
         <p class="contentType">FEATURED</p>
         <div id="advertSlider">
-            @foreach (var adImage in adImages)
-            {
-                <div class="ad">
-                    <img src="@(adImagePath + "/" + adImage + ".jpg")" alt="@adImage">
-                </div>
-            }
         </div>
         <p class="contentType">NEW</p>
         <div id="newSlider">
-            @foreach (var newImage in newImages)
-            {
-                <div class="new">
-                    <img src="@(newImagePath + "/" + newImage + ".jpg")" alt="@newImage">
-                </div>
-            }
         </div>
         <div id="sideBySideContainer">
             <div id="trendingContainer">
                 <p class="contentType">TRENDING</p>
                 <div id="trendingSlider">
-                    @foreach (var trendingImage in trendingImages)
-                    {
-                        <div class="trending">
-                            <img src="@(trendingImagePath + "/" + trendingImage + ".jpg")" alt="@trendingImage">
-                        </div>
-                    }
                 </div>
             </div>
             <div id="allTimeFavoritesContainer">
                 <p class="contentType">ALL TIME FAVORITES</p>
                 <div id="allTimeFavoritesSlider">
-                    @foreach (var allTimeFavoritesImage in allTimeFavoritesImages)
-                    {
-                        <div class="allTimeFavorites">
-                            <img src="@(allTimeFavoritesImagePath + "/" + allTimeFavoritesImage + ".jpg")" alt="@allTimeFavoritesImage">
-                        </div>
-                    }
                 </div>
             </div>
         </div>
         <p class="contentType">NEWS</p>
         <div id="newsSlider">
-            @foreach (var newsArticle in news)
-            {
-                <div class="article">
-                    <p class="newsTitle">
-                        @newsArticle.title
-                    </p>
-                    <p class="newsContent">
-                        @newsArticle.content
-                    </p>
-                </div>
-            }
         </div>
     </body>
 </html>
