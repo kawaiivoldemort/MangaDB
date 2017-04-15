@@ -15,7 +15,7 @@ namespace MangaDB.Controllers
 
         public LoginController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
-            // The UserManager is what we’ll be using to create users and generate validation tokens. 
+            // The UserManager is what weï¿½ll be using to create users and generate validation tokens. 
             this._userManager = userManager;
             // SignInManager allows us to do password validation and sign in/out the users by managing the authentication cookies for us.
             this._signInManager = signInManager;
@@ -86,9 +86,16 @@ namespace MangaDB.Controllers
             return Redirect("~/");
         }
 
-        //public JsonResult GetUserDetails()
-        //{
-        //    return View();
-        //}
+        public async Task<JsonResult> GetUserDetails()
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var r = new Random();
+            // Fetch something from the db
+            return Json(new {
+                name = user.UserName,
+                id = user.Email,
+                ppn = r.Next() % 4
+            });
+        }
     }
 }
