@@ -56,7 +56,7 @@ namespace MangaDB.Controllers
                 }
                 return View();
             }
-            return Content("Account Created");
+            return Redirect("~/");
         }
 
         [HttpPost]
@@ -69,24 +69,25 @@ namespace MangaDB.Controllers
                 ModelState.AddModelError(string.Empty, "Invalid login");
                 return View();
             }
-
             var passwordSignInResult = await _signInManager.PasswordSignInAsync(user, password, false, lockoutOnFailure: false);
             if (!passwordSignInResult.Succeeded)
             {
                 ModelState.AddModelError(string.Empty, "Invalid login");
                 return View();
             }
-
             return Redirect("~/");
         }
   
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
+            if(_signInManager.IsSignedIn(User)) {
+                await _signInManager.SignOutAsync();
+            }
             return Redirect("~/");
         }
 
+<<<<<<< HEAD
         public IActionResult UserInfo()
         {
             return View();
@@ -101,6 +102,25 @@ namespace MangaDB.Controllers
                 profilePic = "/images/AdPanel/bakuman.jpg"
             };
             return Json(userdata);
+=======
+        public async Task<JsonResult> GetUserDetails()
+        {
+            if(_signInManager.IsSignedIn(User))
+            {
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                var r = new Random();
+                // Fetch something from the db
+                return Json(new {
+                    name = user.UserName,
+                    id = user.Email,
+                    ppn = r.Next() % 4
+                });
+            }
+            else
+            {
+                return Json(null);
+            }
+>>>>>>> dc3975406fa00cb067a805fae743d0eb74f5dd94
         }
     }
 }

@@ -117,6 +117,7 @@ namespace MangaDB
                     template: "{controller=Login}/register.aspx",
                     defaults: new { action = "RegisterPage" });
                 routes.MapRoute(
+<<<<<<< HEAD
                     name: "userinfo",
                     template: "{controller=Login}/user.aspx",
                     defaults: new { action = "UserInfo"});
@@ -124,6 +125,15 @@ namespace MangaDB
                     name: "getuserinfo",
                     template: "{controller=Login}/getuserinfo.aspx",
                     defaults: new { action = "GetUserInfo"});
+=======
+                    name: "logout",
+                    template: "{controller=Login}/logout.aspx",
+                    defaults: new { action = "Logout" });
+                routes.MapRoute(
+                    name: "getUserDetails",
+                    template: "{controller=Login}/user.aspx",
+                    defaults: new { action = "GetUserDetails"});
+>>>>>>> dc3975406fa00cb067a805fae743d0eb74f5dd94
                 routes.MapRoute(
                     name: "getComments",
                     template: "{controller=GetComments}/{mangaName}/{lastUpdated:int}",
