@@ -61,6 +61,26 @@ namespace MangaDB
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "news",
+                    template: "{controller=Home}/news.aspx",
+                    defaults: new { action = "News" });
+                routes.MapRoute(
+                    name: "trendingImages",
+                    template: "{controller=Home}/trending.aspx",
+                    defaults: new { action = "Trending" });
+                routes.MapRoute(
+                    name: "adImages",
+                    template: "{controller=Home}/ads.aspx",
+                    defaults: new { action = "Ads" });
+                routes.MapRoute(
+                    name: "newMangaImages",
+                    template: "{controller=Home}/new.aspx",
+                    defaults: new { action = "New" });
+                routes.MapRoute(
+                    name: "favoritesImages",
+                    template: "{controller=Home}/favorites.aspx",
+                    defaults: new { action = "Favorites" });
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}",
                     defaults: new { action = "Homepage" });
